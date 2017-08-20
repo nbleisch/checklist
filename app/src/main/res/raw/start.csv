@@ -1,0 +1,52 @@
+CHECK BEFORE ENGINE START
+
+Cabin doors,Closed
+Emergency device,Armed
+Parking break,Set
+Seatbelts,Fastened
+Electiral consumers,Off
+Circuit breaker,In and checked
+Master switch,On
+Anti-collision lights,On
+Fuel quantity,Endurance
+Fuel shutoff valve,open
+
+STARTING ENGINE
+
+Electrical fuel pump,On
+Throttle,Idle
+Both magnetos,On
+Propeller area,Free
+Starter,Press
+Engine running,Set
+Oil pressure,Green Arc
+Choke,Off
+
+CHECK AFTER ENGINE START
+
+Generator output,Checked
+Avionics,On
+Flight instruments,Checked
+Engine instruments,Checked
+Avionics,Set and preselect
+Brake and Steering,Checked
+
+RUN – UP
+sim
+Parking break,Set
+Engine instruments,Green
+Zone behind aircraft,Free
+Throttle,4000 RPM
+Oil pressure,Green Arc
+Magnetos,Checked
+Throttle,Idle
+
+CHECK BEFORE DEPARTURE
+
+Altimeter,Set
+Trim,Neutral
+Flaps,Level 1
+Controls,Free
+Landing light,On
+Transponder,ACL
+Time,Noted

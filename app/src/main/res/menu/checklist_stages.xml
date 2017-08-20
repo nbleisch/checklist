@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/checklist_preflight"
+        android:icon="@drawable/airplane_preflight"
+        android:title="@string/title_preflight"/>
+
+    <item
+        android:id="@+id/checklist_start"
+        android:icon="@drawable/airplane_start"
+        android:title="@string/title_start"/>
+
+    <item
+        android:id="@+id/checklist_landing"
+        android:icon="@drawable/airplane_landing"
+        android:title="@string/title_landing"/>
+
+</menu>
