@@ -8,7 +8,8 @@ sealed class CheckListItem
 data class CheckListLineItem(
         var checked: Boolean,
         var subject: String,
-        var actionToDo: String
+        var actionToDo: String,
+        var isActive: Boolean = false
 ) : CheckListItem()
 
 data class CheckListSection(

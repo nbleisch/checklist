@@ -15,6 +15,7 @@
         android:paddingRight="16dp"
         android:clickable="true"
         android:focusable="true"
+        android:background="@drawable/checklist_item_selector"
 >
 
         <TextView
