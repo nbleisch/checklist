@@ -10,9 +10,9 @@
         android:id="@+id/checklist_line_item_group"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="5dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:clickable="true"
         android:focusable="true"
         android:background="@drawable/checklist_item_selector"
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:text="Subject"
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:textStyle="bold"
             />
 
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:text="Action to Do"/>
 
 
@@ -58,8 +58,11 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:background="@color/grey"
-        android:layout_margin="5dp"
-        android:padding="5dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:padding="20dp"
         android:clickable="false"
         android:focusable="false">
 

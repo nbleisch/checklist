@@ -1,6 +1,5 @@
 package com.fliteaid.checklist
 
-import android.app.Fragment
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.BottomNavigationView.OnNavigationItemSelectedListener
@@ -11,52 +10,62 @@ import com.fliteaid.checklist.model.CheckListSection
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
+private val preflightCaption = "Checklist - Preflight".toUpperCase()
+private val startCaption = "Checklist - Start".toUpperCase()
+private val landingCaption = "Checklist - Landing".toUpperCase()
+
 class CheckListActivity : AppCompatActivity() {
 
-    private var fragment_preflight: CheckListFragment? = null
-    private var fragment_start: CheckListFragment? = null
-    private var fragment_landing: CheckListFragment? = null
+    private var fragmentPreflight: CheckListFragment? = null
+    private var fragmentStart: CheckListFragment? = null
+    private var fragmentLanding: CheckListFragment? = null
+    private var fragmentActive: CheckListFragment? = null
 
     private val onNavigationItemSelectedListener = OnNavigationItemSelectedListener { checklistStage ->
         when (checklistStage.itemId) {
             R.id.checklist_preflight -> {
-                fragment_preflight?.let {
+                fragmentPreflight?.let {
                     show(it)
                 }
-                title = "Checklist - Preflight"
+                title = preflightCaption
                 return@OnNavigationItemSelectedListener true
             }
             R.id.checklist_start -> {
-                fragment_start?.let {
+                fragmentStart?.let {
                     show(it)
                 }
-                title = "Checklist - Start"
+                title = startCaption
                 return@OnNavigationItemSelectedListener true
             }
             R.id.checklist_landing -> {
-                fragment_landing?.let {
+                fragmentLanding?.let {
                     show(it)
                 }
-                setTitle("Checklist - Landing")
+                setTitle(landingCaption)
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
     }
 
-    fun show(fragmentToShow: Fragment) {
+    fun show(fragmentToShow: CheckListFragment) {
         val ft = fragmentManager.beginTransaction()
-        ft.hide(fragment_preflight)
-        ft.hide(fragment_start)
-        ft.hide(fragment_landing)
+        fragmentActive = fragmentToShow
+        ft.hide(fragmentPreflight)
+        ft.hide(fragmentStart)
+        ft.hide(fragmentLanding)
         ft.show(fragmentToShow)
         ft.commit()
     }
 
+    override fun onBackPressed() {
+        fragmentActive?.backButtonPressed()
+    }
+
     private fun initCheckLists() {
-        fragment_preflight?.initWithCheckList("Preflight", *loadCheckList(R.raw.preflight))
-        fragment_start?.initWithCheckList("Start", *loadCheckList(R.raw.start))
-        fragment_landing?.initWithCheckList("Landing", *loadCheckList(R.raw.landing))
+        fragmentPreflight?.initWithCheckList("Preflight", *loadCheckList(R.raw.preflight))
+        fragmentStart?.initWithCheckList("Start", *loadCheckList(R.raw.start))
+        fragmentLanding?.initWithCheckList("Landing", *loadCheckList(R.raw.landing))
     }
 
     fun loadCheckList(resourceId: Int): Array<CheckListItem> {
@@ -64,7 +73,7 @@ class CheckListActivity : AppCompatActivity() {
         val checklistItems = ArrayList<CheckListItem>()
         val checklistReader = BufferedReader(InputStreamReader(inputStream))
         checklistReader.readLines().forEach {
-            if (! it.isEmpty()) {
+            if (!it.isEmpty()) {
                 val parts = it.split(",")
                 if (parts.size > 1) {
                     checklistItems.add(CheckListLineItem(false, parts[0], parts[1]))
@@ -80,13 +89,14 @@ class CheckListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_list)
 
-        fragment_preflight = fragmentManager.findFragmentById(R.id.fragment_checklist_preflight) as CheckListFragment?
-        fragment_start = fragmentManager.findFragmentById(R.id.fragment_checklist_start) as CheckListFragment?
-        fragment_landing = fragmentManager.findFragmentById(R.id.fragment_checklist_landing) as CheckListFragment?
+        fragmentPreflight = fragmentManager.findFragmentById(R.id.fragment_checklist_preflight) as CheckListFragment?
+        fragmentStart = fragmentManager.findFragmentById(R.id.fragment_checklist_start) as CheckListFragment?
+        fragmentLanding = fragmentManager.findFragmentById(R.id.fragment_checklist_landing) as CheckListFragment?
         val navigation = findViewById(R.id.checklist_categories_navigation) as BottomNavigationView
         navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         initCheckLists()
-        show(fragment_preflight!!)
+        title = preflightCaption
+        show(fragmentPreflight!!)
     }
 
 }

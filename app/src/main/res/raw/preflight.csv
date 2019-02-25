@@ -1,8 +1,44 @@
-PREFLIGHT CHECK
+ZUBEHÖR
 
-Outside check,Completed
-Tank,Closed
-Aircraft docs,Check
-Aircraft log, Check
-Cabine, Check
-Loadsheet, Check
+Propellerschoner,Vorhanden
+Staurohrabdeckung,Vorhanden
+Bugradgabel und Spint,Vorhanden
+Haubenbezug und Packsack,Vorhanden
+Drainstab und Aufsatz,Vorhanden
+USB-Kabel Tablet,Vorhanden
+Bordtasche,Vorhanden
+Ölnachfüllflasche 250ml,Vorhanden
+
+AUSRÄUMEN
+
+Hallentore,Geöffnet
+Heizmodul,Entfernt
+Bremskeile,Entfernt
+Propellerschoner,Entfernt
+Staurohrabdeckung,Entfernt
+Propellerstellung,Mercedes
+Bugradstange,Angebracht
+
+AUßENCHECK ZELLE
+
+Zelle,Symmetrisch
+Zelle,Keine Beschädigung
+Bugrad,Ausgerichtet
+Radschuhe Fremdkörper,Keine
+Ruderscharniere,Geprüft
+Landeklappen,Geprüft
+Tragfläche Hauptbolten,Geprüft
+Staurohr,Frei
+Static Ports,Frei
+Propeller,Keine Beschädigung
+Drainprobe,Beide Tanks
+Tankinhalt,Geprüft
+
+AUßENCHECK MOTOR
+
+Obere Cowling,Abgenommen
+Auf auslaufende Flüssigkeiten achten,
+ÖL-Ausgleichbehälter,Geöffnet
+Magnete,Aus
+
+

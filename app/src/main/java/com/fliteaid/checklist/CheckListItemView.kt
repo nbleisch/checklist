@@ -1,9 +1,11 @@
 package com.fliteaid.checklist
 
 import android.content.Context
+import android.graphics.Color
 import android.util.AttributeSet
 import android.view.View
 import android.widget.CheckBox
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.fliteaid.checklist.model.CheckListItem
@@ -22,6 +24,7 @@ class CheckListItemView @JvmOverloads constructor(context: Context,
     private var subjectTextView: TextView
     private var actionToDoTextView: TextView
     private var sectionTextView: TextView
+    private var checklistLineItemGroup: LinearLayout
 
     var checkListeners: Map<Boolean, View.OnClickListener> = hashMapOf(
             true to View.OnClickListener {
@@ -38,6 +41,7 @@ class CheckListItemView @JvmOverloads constructor(context: Context,
         subjectTextView = (findViewById(R.id.checklist_line_item_subject) as TextView)
         actionToDoTextView = (findViewById(R.id.checklist_line_item_actionToDo) as TextView)
         sectionTextView = (findViewById(R.id.checklist_section) as TextView)
+        checklistLineItemGroup = (findViewById(R.id.checklist_line_item_group) as LinearLayout)
     }
 
     fun update(checkListItem: CheckListItem) {
@@ -50,13 +54,18 @@ class CheckListItemView @JvmOverloads constructor(context: Context,
                 actionToDoTextView.text = checkListItem.actionToDo
                 checkbox.isChecked = checkListItem.checked
                 checkListeners.get(checkListItem.isActive).let {
+                    checklistLineItemGroup.setOnClickListener(it)
                     checkbox.setOnClickListener(it)
                     subjectTextView.setOnClickListener(it)
                     actionToDoTextView.setOnClickListener(it)
                 }
                 checkbox.isClickable = checkListItem.isActive
                 if (checkListItem.isActive) {
+                    subjectTextView.setTextColor(Color.parseColor("#FFFFFF"));
+                    actionToDoTextView.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {
+                    subjectTextView.setTextColor(Color.parseColor("#000000"));
+                    actionToDoTextView.setTextColor(Color.parseColor("#000000"));
                 }
                 this.isActivated = checkListItem.isActive
             }

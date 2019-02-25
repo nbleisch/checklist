@@ -40,7 +40,7 @@ open class CheckListFragment : Fragment() {
 
     fun updatePosition() {
         var correctedPos = ++currentCheckItemPosition
-        for (i in 0 until checklistItems.size )
+        for (i in 0 until checklistItems.size)
             checklistItems.get(i).let {
                 if (it is CheckListLineItem) {
                     it.isActive = (i == correctedPos)
@@ -57,6 +57,26 @@ open class CheckListFragment : Fragment() {
         this.checklistItems = arrayListOf(*checklistItems)
         checklistItemAdapter?.checklistItems = this.checklistItems
         updatePosition()
+    }
+
+    fun backButtonPressed() {
+        checklistItems.get(currentCheckItemPosition).let {
+            if (it is CheckListLineItem) {
+                it.checked = false
+                it.isActive = false
+            }
+        }
+        currentCheckItemPosition = Math.max(currentCheckItemPosition - 1, 0)
+        if (currentCheckItemPosition == 0) return
+
+        val checkListItem = checklistItems.get(currentCheckItemPosition)
+        if (checkListItem is CheckListLineItem) {
+            checkListItem.checked = false
+            checkListItem.isActive = false
+            checklistItemAdapter?.notifyDataSetChanged()
+        } else {
+            backButtonPressed()
+        }
     }
 
     override fun onResume() {

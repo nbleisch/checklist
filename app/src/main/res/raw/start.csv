@@ -1,26 +1,33 @@
 CHECK BEFORE ENGINE START
 
-Cabin doors,Closed
-Emergency device,Armed
-Parking break,Set
-Seatbelts,Fastened
-Electiral consumers,Off
-Circuit breaker,In and checked
-Master switch,On
-Anti-collision lights,On
-Fuel quantity,Endurance
-Fuel shutoff valve,open
+Gurte,Angelegt
+Kabinenhaube,Verriegelt
+Trimmung,Neutral
+Parkbremse,Gesetzt
+Landeklappen,Geprüft
+Kraftstoffhahn,Links
+Öl Kühler,Auf
+Vergaservorwärmung,Aus
+Rettungsgerät,Entsichert
+Avionik,Aus
+Sicherungen,Geprüft
+Steuerung,Freigängig
 
 STARTING ENGINE
 
-Electrical fuel pump,On
-Throttle,Idle
-Both magnetos,On
-Propeller area,Free
-Starter,Press
-Engine running,Set
-Oil pressure,Green Arc
-Choke,Off
+Hauptschalter,Ein
+Zündschalter,Stellung Zwo
+Kraftstoffinhalt,Geprüft
+Kraftstoffanzeige,Links
+Kraftstoffwarnleuchten,Geprüft
+Kraftstoffpumpe,Ein
+Kraftstoffförderdruck,0,15 - 0,5 Bar
+Zylinderkopftemp. Warnung,Geprüft
+Propellersteuerung,Soll 5700 U/min
+Propellerverstellung,Constant Speed,
+Zündschalter,Beide
+Propellerbereich,Frei
+
 
 CHECK AFTER ENGINE START
 
