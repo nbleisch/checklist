@@ -89,7 +89,7 @@ open class CheckListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        checklistItemsRecyclerView?.scrollToPosition(0)
+        checklistItemsRecyclerView?.scrollToPosition(currentCheckItemPosition -1)
     }
 
     class CheckListItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

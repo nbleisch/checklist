@@ -68,7 +68,7 @@ class CheckListItemView @JvmOverloads constructor(context: Context,
                     tts = TextToSpeech(context) { status ->
                         if (status == TextToSpeech.SUCCESS) {
                             tts?.language = Locale.GERMAN
-                            tts?.speak(checkListItem.subject, TextToSpeech.QUEUE_ADD, null, null)
+                            tts?.speak("${checkListItem.subject} ${checkListItem.actionToDo}", TextToSpeech.QUEUE_ADD, null, null)
                         }
                     }
                     subjectTextView.setTextColor(Color.parseColor("#FFFFFF"));

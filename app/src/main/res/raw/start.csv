@@ -21,39 +21,27 @@ Kraftstoffinhalt,Geprüft
 Kraftstoffanzeige,Links
 Kraftstoffwarnleuchten,Geprüft
 Kraftstoffpumpe,Ein
-Kraftstoffförderdruck,0,15 - 0,5 Bar
+Kraftstoffförderdruck,0.15 - 0.5 Bar
 Zylinderkopftemp. Warnung,Geprüft
 Propellersteuerung,Soll 5700 U/min
 Propellerverstellung,Constant Speed,
 Zündschalter,Beide
 Propellerbereich,Frei
-
+Leistungshebel,Leerlauf
+Choke bei Bedarf,
+Motor starten,
+Öldruck (> 2 Bar),Vorhanden
 
 CHECK AFTER ENGINE START
 
-Generator output,Checked
-Avionics,On
-Flight instruments,Checked
-Engine instruments,Checked
-Avionics,Set and preselect
-Brake and Steering,Checked
+Choke,Aus
+Warmlauf 2000 bis 2500 U/min,
+Kraftstoffpumpe,Aus
+Kraftstoffförderdruck > 0.3 Bar,
+Funk,Ein
+Transponder,Ein
+GPS,Ein
+Flarm,Ein
+Sicherungen,Geprüft
+Höhenmesser,QNH
 
-RUN – UP
-
-Parking break,Set
-Engine instruments,Green
-Zone behind aircraft,Free
-Throttle,4000 RPM
-Oil pressure,Green Arc
-Magnetos,Checked
-Throttle,Idle
-
-CHECK BEFORE DEPARTURE
-
-Altimeter,Set
-Trim,Neutral
-Flaps,Level 1
-Controls,Free
-Landing light,On
-Transponder,ACL
-Time,Noted
