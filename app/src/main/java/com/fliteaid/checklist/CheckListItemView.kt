@@ -11,6 +11,9 @@ import android.widget.TextView
 import com.fliteaid.checklist.model.CheckListItem
 import com.fliteaid.checklist.model.CheckListLineItem
 import com.fliteaid.checklist.model.CheckListSection
+import android.speech.tts.TextToSpeech
+import java.util.*
+
 
 class CheckListItemView @JvmOverloads constructor(context: Context,
                                                   attrs: AttributeSet? = null,
@@ -25,6 +28,7 @@ class CheckListItemView @JvmOverloads constructor(context: Context,
     private var actionToDoTextView: TextView
     private var sectionTextView: TextView
     private var checklistLineItemGroup: LinearLayout
+    private var tts: TextToSpeech? = null
 
     var checkListeners: Map<Boolean, View.OnClickListener> = hashMapOf(
             true to View.OnClickListener {
@@ -61,6 +65,12 @@ class CheckListItemView @JvmOverloads constructor(context: Context,
                 }
                 checkbox.isClickable = checkListItem.isActive
                 if (checkListItem.isActive) {
+                    tts = TextToSpeech(context) { status ->
+                        if (status == TextToSpeech.SUCCESS) {
+                            tts?.language = Locale.GERMAN
+                            tts?.speak(checkListItem.subject, TextToSpeech.QUEUE_ADD, null, null)
+                        }
+                    }
                     subjectTextView.setTextColor(Color.parseColor("#FFFFFF"));
                     actionToDoTextView.setTextColor(Color.parseColor("#FFFFFF"));
                 } else {

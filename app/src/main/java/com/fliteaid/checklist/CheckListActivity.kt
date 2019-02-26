@@ -9,6 +9,9 @@ import com.fliteaid.checklist.model.CheckListLineItem
 import com.fliteaid.checklist.model.CheckListSection
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import android.speech.tts.TextToSpeech
+import android.content.Intent
+
 
 private val preflightCaption = "Checklist - Preflight".toUpperCase()
 private val startCaption = "Checklist - Start".toUpperCase()
@@ -86,6 +89,9 @@ class CheckListActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        val checkIntent = Intent()
+        checkIntent.action = TextToSpeech.Engine.ACTION_CHECK_TTS_DATA
+        startActivityForResult(checkIntent, 1)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_check_list)
 

@@ -5,9 +5,10 @@
         <selector>
             <item android:state_activated="true">
                 <shape android:shape="rectangle">
+                    <size android:height="80dp"/>
                     <solid android:color="@color/airplaneRed"/>
                     <corners android:radius="4dp"/>
-                    <stroke android:width="2dp" android:color="@color/white" android:dashWidth="2dp" android:dashGap="2dp"/>
+                    <stroke android:width="2dp" android:color="@color/black" android:dashWidth="2dp" android:dashGap="2dp"/>
                     <padding android:top="5dp" android:bottom="5dp" />
                 </shape>
             </item>

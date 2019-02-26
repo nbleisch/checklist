@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.fliteaid.checklist.model.CheckListItem
 import com.fliteaid.checklist.model.CheckListLineItem
+import com.fliteaid.checklist.model.CheckListSection
+
 
 open class CheckListFragment : Fragment() {
 
@@ -27,7 +29,6 @@ open class CheckListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         checklistItemsRecyclerView = view.findViewById(R.id.checklist_line_items) as RecyclerView?
 
-
         checklistItemAdapter = CheckListItemAdapter()
         checklistItemAdapter?.checkListener = { updatePosition() }
 
@@ -39,16 +40,17 @@ open class CheckListFragment : Fragment() {
     }
 
     fun updatePosition() {
-        var correctedPos = ++currentCheckItemPosition
+        do {
+        } while (checklistItems.size > ++currentCheckItemPosition && checklistItems.get(currentCheckItemPosition) is CheckListSection)
+
         for (i in 0 until checklistItems.size)
             checklistItems.get(i).let {
                 if (it is CheckListLineItem) {
-                    it.isActive = (i == correctedPos)
-                } else {
-                    correctedPos++
+                    it.isActive = (i == currentCheckItemPosition)
                 }
             }
-        checklistItemsRecyclerView!!.scrollToPosition(correctedPos)
+        currentCheckItemPosition = Math.min(currentCheckItemPosition, checklistItems.size - 1)
+        checklistItemsRecyclerView?.layoutManager?.scrollToPosition(currentCheckItemPosition + 1)
         checklistItemAdapter!!.notifyDataSetChanged()
     }
 
@@ -60,28 +62,34 @@ open class CheckListFragment : Fragment() {
     }
 
     fun backButtonPressed() {
+        if (currentCheckItemPosition == 0) {
+            return
+        }
+        val hasPriorLineItems = (checklistItems.subList(0, currentCheckItemPosition).firstOrNull { it is CheckListLineItem } != null)
+
         checklistItems.get(currentCheckItemPosition).let {
             if (it is CheckListLineItem) {
                 it.checked = false
-                it.isActive = false
+                it.isActive = !hasPriorLineItems
             }
         }
-        currentCheckItemPosition = Math.max(currentCheckItemPosition - 1, 0)
-        if (currentCheckItemPosition == 0) return
 
-        val checkListItem = checklistItems.get(currentCheckItemPosition)
-        if (checkListItem is CheckListLineItem) {
-            checkListItem.checked = false
-            checkListItem.isActive = false
-            checklistItemAdapter?.notifyDataSetChanged()
-        } else {
-            backButtonPressed()
+        if (hasPriorLineItems) {
+            val checkListItem = checklistItems.get(--currentCheckItemPosition)
+            checklistItemsRecyclerView?.scrollToPosition(currentCheckItemPosition + 1)
+            if (checkListItem is CheckListLineItem) {
+                checkListItem.checked = false
+                checkListItem.isActive = true
+                checklistItemAdapter?.notifyDataSetChanged()
+            } else {
+                backButtonPressed()
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        checklistItemsRecyclerView!!.scrollToPosition(currentCheckItemPosition)
+        checklistItemsRecyclerView?.scrollToPosition(0)
     }
 
     class CheckListItemAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -105,5 +113,3 @@ open class CheckListFragment : Fragment() {
     }
 
 }
-
-
